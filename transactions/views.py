@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework import viewsets
 from transactions.models import Transaction
 from transactions.serializers import TransactionAccIdSerializer
