@@ -14,3 +14,12 @@ class AccountSerializer(serializers.ModelSerializer):
             'opened_at',
             'transactions'
         )
+
+
+class AccountIdSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Account
+        fields = (
+            'id',
+        )

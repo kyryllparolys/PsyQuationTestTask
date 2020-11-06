@@ -24,6 +24,7 @@ class Account(models.Model):
         balance = credit_sum - debit_sum
         if balance < 0:
             return 0
+        # print("Balance (asdfasdfasdf): ", balance)
         return balance
 
     def __str__(self):
