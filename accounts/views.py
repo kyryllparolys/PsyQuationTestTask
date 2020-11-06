@@ -17,7 +17,7 @@ class AccountsViewSet(viewsets.ModelViewSet):
     filter_backends = (filters.DjangoFilterBackend, )
     filterset_class = AccountsFilter
 
-    @action(detail=False, methods=['GET',], filterset_class=None)
+    @action(detail=False, methods=['GET', ], filterset_class=None)
     def get_top(self, request):
         accounts = Account.objects.all()
 
