@@ -3,8 +3,10 @@
 * **Virtualenv** (optional)
     * `virtualenv venv && source venv/bin/activate`
 * **Install Dependencies**
-    *  `pip install poetry`
+    * `pip install poetry`
+    * `git checkout feature/filters`
     * `poetry install`
 * **Start Server**
-    *  `python manage.py runserver`
+    * `python manage.py migrate`
+    * `python manage.py runserver`
 
