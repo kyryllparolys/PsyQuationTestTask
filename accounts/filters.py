@@ -4,10 +4,20 @@ from django.db.models import Q
 from django.utils.datetime_safe import datetime
 from django_filters import rest_framework as filters
 
+from accounts.models import Account
+
 
 class AccountsFilter(filters.FilterSet):
-    is_new = filters.BooleanFilter(method='filter_is_new')
-    is_active = filters.BooleanFilter(method='filter_is_active')
+    is_new = filters.BooleanFilter(method="filter_is_new")
+    is_active = filters.BooleanFilter(method="filter_is_active")
+
+    class Meta:
+        model = Account
+        fields = (
+            "id",
+            "name",
+            "opened_at",
+        )
 
     def filter_is_new(self, queryset, name, value):
         today = datetime.now()
