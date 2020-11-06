@@ -14,12 +14,14 @@ class TransactionSerializer(serializers.ModelSerializer):
 
 
 class TransactionAccIdSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Transaction
         fields = (
             'id',
-            'account_id',
+            'account',
             'time',
             'amount',
             'type'
         )
+
