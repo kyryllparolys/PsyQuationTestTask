@@ -7,3 +7,4 @@ accounts/migrations/__pycache__
 transactions/__pycache__
 transactions/migrations/__pycache__
 *.pyc
+.env
