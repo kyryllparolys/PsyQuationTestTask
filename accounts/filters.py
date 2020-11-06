@@ -3,20 +3,11 @@ from datetime import timedelta
 from django.db.models import Q
 from django.utils.datetime_safe import datetime
 from django_filters import rest_framework as filters
-from accounts.models import Account
 
 
 class AccountsFilter(filters.FilterSet):
     is_new = filters.BooleanFilter(method='filter_is_new')
     is_active = filters.BooleanFilter(method='filter_is_active')
-    # is_top = filters.BooleanFilter(method='filter_is_top')
-
-    # class Meta:
-    #     model = Account
-    #     fields = (
-    #         'name',
-    #         'opened_at',
-    #     )
 
     def filter_is_new(self, queryset, name, value):
         today = datetime.now()
@@ -30,3 +21,4 @@ class AccountsFilter(filters.FilterSet):
         if value:
             return queryset.filter(Q(transaction__time__gt=three_days_ago))
         return queryset.filter(Q(transaction__time__lt=three_days_ago))
+
