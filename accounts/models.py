@@ -1,7 +1,6 @@
 from django.db import models
 from django.db.models import Sum
 from django.utils.datetime_safe import date
-from django.utils.timezone import now
 
 
 from transactions.models import Transaction
