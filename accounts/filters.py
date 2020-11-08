@@ -14,7 +14,6 @@ class AccountsFilter(filters.FilterSet):
     class Meta:
         model = Account
         fields = (
-            "id",
             "name",
             "opened_at",
         )

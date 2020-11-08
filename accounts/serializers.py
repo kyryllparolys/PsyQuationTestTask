@@ -12,7 +12,8 @@ class AccountSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'opened_at',
-            'transactions'
+            'transactions',
+            'balance'
         )
 
 

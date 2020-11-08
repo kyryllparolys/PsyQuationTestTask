@@ -1,12 +1,15 @@
 from django.db import models
 from django.db.models import Sum
+from django.utils.datetime_safe import date
+from django.utils.timezone import now
+
 
 from transactions.models import Transaction
 
 
 class Account(models.Model):
     name = models.CharField(max_length=50)
-    opened_at = models.DateTimeField(auto_now=True)  # TODO: test with no "auto_now"
+    opened_at = models.DateField(default=date.today, blank=True)
 
     @property
     def balance(self):
@@ -24,7 +27,6 @@ class Account(models.Model):
         balance = credit_sum - debit_sum
         if balance < 0:
             return 0
-        # print("Balance (asdfasdfasdf): ", balance)
         return balance
 
     def __str__(self):

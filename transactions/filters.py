@@ -5,4 +5,4 @@ from transactions.models import Transaction
 class TransactionsFilter(filters.FilterSet):
     class Meta:
         model = Transaction
-        fields = "__all__"
+        fields = ("account", "amount", "type")

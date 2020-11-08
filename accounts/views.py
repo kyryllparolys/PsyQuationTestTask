@@ -17,13 +17,20 @@ class AccountsViewSet(viewsets.ModelViewSet):
     filter_backends = (filters.DjangoFilterBackend, )
     filterset_class = AccountsFilter
 
+    def paginate_queryset(self, queryset, view=None):
+        if 'no_page' in self.request.query_params:
+            return None
+        else:
+            return self.paginator.paginate_queryset(queryset, self.request, view=self)
+
     @action(detail=False, methods=['GET', ], filterset_class=None)
     def get_top(self, request):
         accounts = Account.objects.all()
 
         accounts_dict = {}
         for account in accounts:
-            accounts_dict[account] = account.balance
+            if account.balance != 0:
+                accounts_dict[account] = account.balance
 
         top_accounts = heapq.nlargest(100, accounts_dict, key=accounts_dict.get)
 
