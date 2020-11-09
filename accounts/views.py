@@ -14,16 +14,16 @@ class AccountsViewSet(viewsets.ModelViewSet):
     queryset = Account.objects.all()
     serializer_class = AccountSerializer
 
-    filter_backends = (filters.DjangoFilterBackend, )
+    filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = AccountsFilter
 
     def paginate_queryset(self, queryset, view=None):
-        if 'no_page' in self.request.query_params:
+        if "no_page" in self.request.query_params:
             return None
         else:
             return self.paginator.paginate_queryset(queryset, self.request, view=self)
 
-    @action(detail=False, methods=['GET', ], filterset_class=None)
+    @action(detail=False, methods=["GET",], filterset_class=None)
     def get_top(self, request):
         accounts = Account.objects.all()
 
@@ -32,7 +32,8 @@ class AccountsViewSet(viewsets.ModelViewSet):
             if account.balance != 0:
                 accounts_dict[account] = account.balance
 
-        top_accounts = heapq.nlargest(100, accounts_dict, key=accounts_dict.get)
+        top_len = len(accounts_dict) if len(accounts_dict) < 100 else 100
+        top_accounts = heapq.nlargest(top_len, accounts_dict, key=accounts_dict.get)
 
         serializer = self.get_serializer(top_accounts, many=True)
         return Response(serializer.data)
